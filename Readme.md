@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Владимир Филиппов](https://up.htmlacademy.ru/javascript/33/user/835499).
-* Наставник: `Неизвестно`.
+* Студент: [Владимир Филиппов](https://up.htmlacademy.ru/javascript/33/user/835499)
+* Наставник: [Виктория Никитина](https://htmlacademy.ru/profile/id1217273)
 
 ---
 
