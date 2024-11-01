@@ -1,4 +1,4 @@
-import { Init } from './InitData';
+import Init from './InitData';
 import * as Random from './Randome';
 
 const getId = Random.getUniqueNumber(Init.MIN_RANGE_ID, Init.MAX_RANGE_ID);
@@ -17,7 +17,7 @@ function createComment() {
   };
 }
 
-function createPhotoInfo() {
+function createInfo() {
   return {
     id: getId(),
     url: `photos/${getUrlId()}.jpg`,
@@ -27,4 +27,4 @@ function createPhotoInfo() {
   };
 }
 
-export {createComment, createPhotoInfo};
+export { createInfo };

@@ -1,9 +1,9 @@
-import { Init } from './InitData.js';
-import { createPhotoInfo } from './DataBuilder.js';
+import Init from './InitData.js';
+import { createInfo } from './DataBuilder.js';
 
 function createData(value) {
-  return Array.from({length: value}, createPhotoInfo);
+  return Array.from({length: value}, createInfo);
 }
 
-createData(Init.VALUES_QUANTITY);
-// console.table(createData(Init.VALUES_QUANTITY));
+createData(Init.QUANTITY);
+// console.table(createData(Init.QUANTITY));

@@ -1,5 +1,5 @@
-export const Init = {
-  VALUES_QUANTITY: 25,
+const Init = {
+  QUANTITY: 25,
   MIN_RANGE_ID: 1,
   MAX_RANGE_ID: 25,
   MIN_RANGE_LIKES: 15,
@@ -16,3 +16,5 @@ export const Init = {
 Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.
 Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!`,
 };
+
+export default Init;
