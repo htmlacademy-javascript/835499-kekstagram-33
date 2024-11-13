@@ -33,8 +33,9 @@ function getRandomMessage(text) {
 function getRandomDescription(text) {
   return function() {
     const messagesInArray = text.toLowerCase().replaceAll('\n', ' ').split(' ');
-    const randomDescription = Array.from({length: getRandomNumber(2, 10)}, () => getRandomElement(messagesInArray));
-    return randomDescription.join(' ');
+    const randomDescriptionArray = Array.from({length: getRandomNumber(2, 7)}, () => getRandomElement(messagesInArray));
+    const randomDescription = randomDescriptionArray.join(' ');
+    return randomDescription[0].toLocaleUpperCase() + randomDescription.slice(1);
   };
 }
 

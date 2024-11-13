@@ -1,6 +1,7 @@
 import Init from './InitData.js';
 import { createInfo } from './DataBuilder.js';
-import { displayPictures } from './DisplayPictures.js';
+import { renderPictures } from './RenderPictures.js';
+// import { renderBigImage } from './renderBigImage.js';
 
 function createData(value) {
   return Array.from({length: value}, createInfo);
@@ -8,4 +9,6 @@ function createData(value) {
 
 const dataBase = createData(Init.QUANTITY);
 // console.table(createData(Init.QUANTITY));
-displayPictures(dataBase);
+// console.table(dataBase);
+renderPictures(dataBase);
+
