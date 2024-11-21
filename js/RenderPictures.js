@@ -1,18 +1,18 @@
 import { renderBigPicture } from './RenderBigPicture.js';
 
-const picturesContainer = document.querySelector('.pictures');
-const pictureTemplate = document.querySelector('#picture').content.firstElementChild;
-const picturesListFragment = document.createDocumentFragment();
-
 function renderPictures(data) {
+  const picturesContainer = document.querySelector('.pictures');
+  const pictureTemplate = document.querySelector('#picture').content.firstElementChild;
+  const picturesListFragment = document.createDocumentFragment();
+
   data.forEach(({id, url, description, likes, comments}) => {
-    const clonePictureElement = pictureTemplate.cloneNode(true);
-    clonePictureElement.dataset.id = id;
-    clonePictureElement.querySelector('img').src = url;
-    clonePictureElement.querySelector('img').alt = description;
-    clonePictureElement.querySelector('.picture__comments').textContent = comments.length;
-    clonePictureElement.querySelector('.picture__likes').textContent = likes;
-    picturesListFragment.append(clonePictureElement);
+    const newPicture = pictureTemplate.cloneNode(true);
+    newPicture.dataset.id = id;
+    newPicture.querySelector('img').src = url;
+    newPicture.querySelector('img').alt = description;
+    newPicture.querySelector('.picture__comments').textContent = comments.length;
+    newPicture.querySelector('.picture__likes').textContent = likes;
+    picturesListFragment.append(newPicture);
   });
   picturesContainer.append(picturesListFragment);
 
