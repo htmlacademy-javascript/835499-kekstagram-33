@@ -1,4 +1,4 @@
-import { renderBigPicture } from './RenderBigPicture.js';
+import { renderBigPicture } from './render-picture.js';
 
 function renderPictures(data) {
   const picturesContainer = document.querySelector('.pictures');

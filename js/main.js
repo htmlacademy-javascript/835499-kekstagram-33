@@ -1,7 +1,7 @@
-import Init from './InitData.js';
-import { createInfo } from './DataBuilder.js';
-import { renderPictures } from './RenderPictures.js';
-// import { renderBigImage } from './renderBigImage.js';
+import Init from './init-values.js';
+import { createInfo } from './create-data.js';
+import { renderPictures } from './render-gallery.js';
+import './upload-form-handler.js';
 
 function createData(value) {
   return Array.from({length: value}, createInfo);
