@@ -22,8 +22,8 @@ function checkHashtagsValid() {
 }
 
 function checkHashtagUnique() {
-  const filteredArray = hashtagsArray.filter((el, ind) => ind === hashtagsArray.indexOf(el));
-  return !(filteredArray.length < hashtagsArray.length);
+  const filteredArray = hashtagsArray.filter((elem, index) => index === hashtagsArray.indexOf(elem));
+  return filteredArray.length === hashtagsArray.length;
 }
 
 function checkHashtagQuantity() {
