@@ -1,5 +1,5 @@
-import Init from './InitData.js';
-import * as Random from './Random.js';
+import Init from './init-values.js';
+import * as Random from './random-utils.js';
 
 const getId = Random.getUniqueNumber(Init.MIN_RANGE_ID, Init.MAX_RANGE_ID);
 const getUrlId = Random.getUniqueNumber(Init.MIN_RANGE_ID, Init.MAX_RANGE_ID);
@@ -28,3 +28,4 @@ function createInfo() {
 }
 
 export { createInfo };
+

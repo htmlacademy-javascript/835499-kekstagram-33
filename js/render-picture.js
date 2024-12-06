@@ -88,4 +88,3 @@ function renderBigPicture(data) {
 }
 
 export { renderBigPicture };
-
