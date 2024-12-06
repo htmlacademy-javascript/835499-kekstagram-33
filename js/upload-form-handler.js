@@ -1,3 +1,5 @@
+import { resetFiltersHandler } from './upload-form-photo-filters.js';
+import { imageSettingHandler, resetImageSetting } from './upload-form-styles.js';
 import { validateUploadForm } from './upload-form-validation.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
@@ -15,6 +17,8 @@ function isEscape(evt) {
 
 function clearUploadForm() {
   uploadButton.value = '';
+  resetImageSetting();
+  resetFiltersHandler();
 }
 
 function closeImageEditor(evt) {
@@ -39,4 +43,5 @@ function showImageEditor() {
 
 uploadButton.addEventListener('change', showImageEditor);
 
+imageSettingHandler();
 validateUploadForm();
