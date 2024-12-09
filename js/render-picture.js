@@ -10,10 +10,10 @@ function pictureHandler({ url, description, likes}) {
   bigPictureContainer.querySelector('.social__likes .likes-count').textContent = likes;
 }
 
-function createNewComment({ avatar, name, message}) {
+function createNewComment(comment) {
   return `<li class="social__comment">
-  <img class="social__picture" src="${avatar}" alt="${name}" width="35" height="35">
-  <p class="social__text">${message}</p>
+  <img class="social__picture" src="${comment?.avatar}" alt="${comment?.name}" width="35" height="35">
+  <p class="social__text">${comment?.message}</p>
   </li>`;
 }
 
@@ -40,7 +40,7 @@ function showLoadMoreButton(bool) {
 }
 
 function commentsHandler(comments) {
-  let commentsCount = comments.length < COMMENTS_COUNT - 1 ? comments.length : COMMENTS_COUNT;
+  let commentsCount = comments.length < COMMENTS_COUNT ? comments.length : COMMENTS_COUNT;
   renderComments(comments, commentsCount);
   showLoadMoreButton(commentsCount < comments.length);
 

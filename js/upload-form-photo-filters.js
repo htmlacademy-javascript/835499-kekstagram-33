@@ -141,9 +141,8 @@ function initFiltersHandler() {
   filtersList.addEventListener('change', startFilterHandler);
 }
 
-
 function resetFilters() {
-  setFilter(FILTERS[FILTER_DEFAULT]);
+  setFilter(FILTER_DEFAULT);
 }
 
 function resetFiltersHandler() {
@@ -152,7 +151,4 @@ function resetFiltersHandler() {
   filtersList.removeEventListener('change', startFilterHandler);
 }
 
-
 export { initFiltersHandler, resetFiltersHandler };
-
-

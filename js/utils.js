@@ -39,10 +39,33 @@ function getRandomDescription(text) {
   };
 }
 
+const ERROR_SHOW_TIME = 5000;
+const showErrorMessage = (message) => {
+  const alertTemplate = document.querySelector('#data-error').content.firstElementChild;
+  const newAlert = alertTemplate.cloneNode(true);
+  newAlert.textContent = message;
+  document.body.append(newAlert);
+
+  setTimeout(() => {
+    newAlert.remove();
+  }, ERROR_SHOW_TIME);
+};
+
+function isEscapeKey(evt) {
+  return evt.key === 'Escape';
+}
+
+function isEnterKey(evt) {
+  return evt.key === 'isEnterKey';
+}
+
 export {
   getRandomNumber,
   getUniqueNumber,
   getRandomElement,
   getRandomMessage,
   getRandomDescription,
+  isEscapeKey,
+  isEnterKey,
+  showErrorMessage,
 };

@@ -48,14 +48,9 @@ pristine.addValidator(hashtagFieldElement, checkHashtagQuantity, MESSAGES.hashta
 pristine.addValidator(descriptionFieldElement, checkDescriptionLength, MESSAGES.descriptionErrorText);
 
 
-export function validateUploadForm() {
-  uploadFormElement.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    initHashtagsArray();
-    const isValid = pristine.validate();
-
-    if (isValid) {
-      uploadFormElement.submit();
-    }
-  });
+function validateUploadForm() {
+  initHashtagsArray();
+  return pristine.validate();
 }
+
+export { validateUploadForm };
