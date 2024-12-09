@@ -1,5 +1,5 @@
 import Init from './init-values.js';
-import * as Random from './random-utils.js';
+import * as Random from './utils.js';
 
 const getId = Random.getUniqueNumber(Init.MIN_RANGE_ID, Init.MAX_RANGE_ID);
 const getUrlId = Random.getUniqueNumber(Init.MIN_RANGE_ID, Init.MAX_RANGE_ID);
