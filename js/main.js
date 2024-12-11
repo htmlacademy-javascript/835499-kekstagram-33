@@ -4,6 +4,7 @@ import { galleryHandler } from './render-gallery.js';
 import './upload-form-handler.js';
 import { getData } from './api.js';
 import { showErrorMessage } from './utils.js';
+import { setUserFormSubmit } from './upload-form-handler.js';
 
 // function createData(value) {
 //   return Array.from({length: value}, createInfo);
@@ -14,6 +15,7 @@ import { showErrorMessage } from './utils.js';
 getData()
   .then((data) => {
     galleryHandler(data);
+    setUserFormSubmit();
   })
   .catch(
     (err) => {
