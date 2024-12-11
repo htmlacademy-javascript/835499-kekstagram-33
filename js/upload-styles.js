@@ -1,5 +1,3 @@
-import { initFiltersHandler } from './upload-form-photo-filters.js';
-
 const SCALE_DEFAULT = 100;
 const SCALE_STEP = 25;
 const SCALE_MAX = 100;
@@ -9,21 +7,21 @@ const upScaleButton = document.querySelector('.scale__control--bigger');
 const downScaleButton = document.querySelector('.scale__control--smaller');
 const currentScaleElement = document.querySelector('.scale__control--value');
 const previewImageElement = document.querySelector('.img-upload__preview img');
-const effectsList = document.querySelectorAll('.effects__item');
 
 const state = {
   scale: SCALE_DEFAULT,
 };
 
-function resetImageSetting() {
+function resetImageScale() {
   state.scale = SCALE_DEFAULT;
   previewImageElement.style.transform = `scale(${SCALE_DEFAULT * 0.01})`;
+  currentScaleElement.attributes.value.textContent = `${SCALE_DEFAULT}%`;
   currentScaleElement.value = `${SCALE_DEFAULT}%`;
-  effectsList[0].children[0].checked = true;
 }
 
 function renderImage() {
   previewImageElement.style.transform = `scale(${state.scale * 0.01})`;
+  currentScaleElement.attributes.value.textContent = `${state.scale}%`;
   currentScaleElement.value = `${state.scale}%`;
 }
 
@@ -41,11 +39,9 @@ function setScaleDown() {
   renderImage();
 }
 
-function imageSettingHandler() {
+function initScaleHandler() {
   upScaleButton.addEventListener('click', setScaleUp);
   downScaleButton.addEventListener('click', setScaleDown);
-  initFiltersHandler();
 }
 
-
-export { imageSettingHandler, resetImageSetting };
+export { initScaleHandler, resetImageScale };
