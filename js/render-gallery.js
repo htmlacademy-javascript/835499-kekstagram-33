@@ -8,7 +8,7 @@ const filterContainer = document.querySelector('.img-filters');
 const filterButtons = filterContainer.querySelectorAll('.img-filters__button');
 
 const DEFAULT_UNIQUE_NUMBERS = 10;
-const DEBOUNCE_TIME = 500;
+const DEBOUNCE_TIME = 501;
 const FILTERS = {
   DEFAULT: 'filter-default',
   RANDOM: 'filter-random',
@@ -83,8 +83,8 @@ function renderGallery(data) {
 
 function galleryHandler(data) {
   dataArray = [...data];
-  // renderGallery(getFilter(currentFilter));
-  debounceRenderGallery();
+  renderGallery(getFilter(currentFilter));
+  // debounceRenderGallery();
   renderFilters();
   setFilterActive(currentFilter);
 }

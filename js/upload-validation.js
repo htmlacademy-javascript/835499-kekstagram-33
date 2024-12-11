@@ -14,7 +14,7 @@ const descriptionFieldElement = uploadFormElement.querySelector('.text__descript
 
 let hashtagsArray = [];
 function initHashtagsArray() {
-  hashtagsArray = hashtagFieldElement.value.replaceAll(/\s+/g, ' ').trim().split(' ');
+  hashtagsArray = hashtagFieldElement.value.replaceAll(/\s+/g, ' ').trim().toLowerCase().split(' ');
 }
 
 function checkHashtagsValid() {
@@ -40,17 +40,26 @@ const pristineConfig = {
   errorTextClass: 'img-upload__field-wrapper--error',
 };
 
-const pristine = new Pristine(uploadFormElement, pristineConfig, false);
 
-pristine.addValidator(hashtagFieldElement, checkHashtagsValid, MESSAGES.hashtagValidateErrorText);
-pristine.addValidator(hashtagFieldElement, checkHashtagUnique, MESSAGES.hashtagUniqueErrorText);
-pristine.addValidator(hashtagFieldElement, checkHashtagQuantity, MESSAGES.hashtagQuantityErrorText);
-pristine.addValidator(descriptionFieldElement, checkDescriptionLength, MESSAGES.descriptionErrorText);
+let pristine;
+function initPristine() {
+  pristine = new Pristine(uploadFormElement, pristineConfig, false);
+  pristine.addValidator(hashtagFieldElement, checkHashtagsValid, MESSAGES.hashtagValidateErrorText);
+  pristine.addValidator(hashtagFieldElement, checkHashtagUnique, MESSAGES.hashtagUniqueErrorText);
+  pristine.addValidator(hashtagFieldElement, checkHashtagQuantity, MESSAGES.hashtagQuantityErrorText);
+  pristine.addValidator(descriptionFieldElement, checkDescriptionLength, MESSAGES.descriptionErrorText);
+}
 
+function removeValidation() {
+  if (pristine) {
+    pristine.destroy();
+  }
+}
 
-function validateUploadForm() {
+function checkValidation() {
   initHashtagsArray();
+  initPristine();
   return pristine.validate();
 }
 
-export { validateUploadForm };
+export { checkValidation, removeValidation };

@@ -1,12 +1,14 @@
 import { sendData } from './api.js';
-import { appendNotification } from './upload-form-notification.js';
-import { resetFiltersHandler } from './upload-form-photo-filters.js';
-import { imageSettingHandler, resetImageSetting } from './upload-form-styles.js';
-import { validateUploadForm } from './upload-form-validation.js';
+import { appendNotification } from './upload-notification.js';
+import { initFilters, resetFilters } from './upload-filters.js';
+import { initScaleHandler, resetImageScale } from './upload-styles.js';
+import { checkValidation, removeValidation } from './upload-validation.js';
 import { isEscapeKey, showErrorMessage } from './utils.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadButton = uploadForm.querySelector('.img-upload__input');
+const hashtagsField = document.querySelector('.text__hashtags');
+const descriptionField = document.querySelector('.text__description');
 const submitButton = uploadForm.querySelector('.img-upload__submit');
 const imageEditorContainer = uploadForm.querySelector('.img-upload__overlay');
 const imageEditorCloseButton = uploadForm.querySelector('#upload-cancel');
@@ -21,7 +23,6 @@ const SubmitButtonText = {
   SENDING: 'Опубликовать',
 };
 
-
 function isEventClose(evt) {
   return (
     evt.target.classList.contains('img-upload__overlay')
@@ -34,15 +35,19 @@ function isEventClose(evt) {
 
 function closeUploadForm() {
   imageEditorContainer.classList.add('hidden');
+  imageEditorContainer.hidden = true;
   document.body.classList.remove('modal-open');
 
   imageEditorContainer.removeEventListener('click', closeImageEditor);
   imageEditorCloseButton.removeEventListener('click', closeImageEditor);
   document.removeEventListener('keydown', closeImageEditor);
+  hashtagsField.removeEventListener('change', checkValidation);
+  descriptionField.removeEventListener('change', checkValidation);
 
   uploadForm.reset();
-  resetImageSetting();
-  resetFiltersHandler();
+  resetImageScale();
+  resetFilters();
+  removeValidation();
 }
 
 function closeImageEditor(evt) {
@@ -70,11 +75,15 @@ function onInputChange() {
 
 function showImageEditor() {
   imageEditorContainer.classList.remove('hidden');
+  imageEditorContainer.hidden = false;
   document.body.classList.add('modal-open');
+  hashtagsField.addEventListener('input', checkValidation);
+  descriptionField.addEventListener('input', checkValidation);
   imageEditorContainer.addEventListener('click', closeImageEditor);
   imageEditorCloseButton.addEventListener('click', closeImageEditor);
   document.addEventListener('keydown', closeImageEditor);
-  imageSettingHandler();
+  initScaleHandler();
+  initFilters();
 }
 
 function disableSubmitButton() {
@@ -91,14 +100,13 @@ function setUserFormSubmit() {
   uploadButton.addEventListener('change', onInputChange);
   uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    const isValid = validateUploadForm();
 
-    if (isValid) {
+    if (checkValidation()) {
       disableSubmitButton();
       sendData(new FormData(uploadForm))
         .then(() => {
-          appendNotification(templateSuccess);
           closeUploadForm();
+          appendNotification(templateSuccess);
         })
         .catch(
           (err) => {
@@ -106,10 +114,10 @@ function setUserFormSubmit() {
             showErrorMessage(err.message);
           }
         )
-        .finally(enableSubmitButton);
+        .finally(() => {
+          enableSubmitButton();
+        });
     }
-
-
   });
 }
 

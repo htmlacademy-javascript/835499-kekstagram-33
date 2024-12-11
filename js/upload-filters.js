@@ -1,7 +1,8 @@
 const sliderContainer = document.querySelector('.img-upload__effect-level');
 const slider = document.querySelector('.effect-level__slider');
 const sliderValue = document.querySelector('.effect-level__value');
-const filtersList = document.querySelector('.effects__list');
+const effectsList = document.querySelector('.effects__list');
+const effectsItems = document.querySelectorAll('.effects__item');
 const previewImageElement = document.querySelector('.img-upload__preview img');
 
 const FILTER_DEFAULT = 'none';
@@ -56,7 +57,7 @@ const FILTERS = {
     units: '',
     config: {
       min: 1,
-      max: 2,
+      max: 3,
       step: 0.1,
     },
   },
@@ -118,37 +119,28 @@ function updateSlider({ min, max, step }) {
 }
 
 function setSlider() {
-  if (isDefault()) {
-    hideSlider();
-    return;
-  }
   updateSlider(FILTERS[filterActive].config);
   showSlider();
+  if (isDefault()) {
+    hideSlider();
+  }
 }
 
-function setFilter(filter) {
-  filterActive = filter;
+function startFilterHandler(evt) {
+  filterActive = evt.target.value;
   setSlider();
   setImageStyles();
 }
 
-function startFilterHandler(evt) {
-  setFilter(evt.target.value);
-}
-
-function initFiltersHandler() {
+function initFilters() {
   createSlider(FILTERS[FILTER_DEFAULT].config);
-  filtersList.addEventListener('change', startFilterHandler);
+  effectsList.addEventListener('change', startFilterHandler);
 }
 
 function resetFilters() {
-  setFilter(FILTER_DEFAULT);
-}
-
-function resetFiltersHandler() {
-  resetFilters();
+  effectsItems[0].children[0].checked = true;
+  effectsList.removeEventListener('change', startFilterHandler);
   slider.noUiSlider.destroy();
-  filtersList.removeEventListener('change', startFilterHandler);
 }
 
-export { initFiltersHandler, resetFiltersHandler };
+export { initFilters, resetFilters };
