@@ -10,9 +10,12 @@ const uploadButton = uploadForm.querySelector('.img-upload__input');
 const submitButton = uploadForm.querySelector('.img-upload__submit');
 const imageEditorContainer = uploadForm.querySelector('.img-upload__overlay');
 const imageEditorCloseButton = uploadForm.querySelector('#upload-cancel');
+const imageMainPreview = document.querySelector('.img-upload__preview img');
+const imageEffectsPreview = document.querySelectorAll('.effects__preview');
 const templateSuccess = document.querySelector('#success').content.firstElementChild;
 const templateError = document.querySelector('#error').content.firstElementChild;
 
+const FILE_TYPES = ['png', 'jpg', 'jpeg'];
 const SubmitButtonText = {
   DEFAULT: 'Сохраняю...',
   SENDING: 'Опубликовать',
@@ -49,6 +52,22 @@ function closeImageEditor(evt) {
   }
 }
 
+function isValidType(file) {
+  const fileName = file.name.toLowerCase();
+  return FILE_TYPES.some((item) => fileName.endsWith(item));
+}
+
+function onInputChange() {
+  const file = uploadButton.files[0];
+  if (file && isValidType(file)) {
+    imageMainPreview.src = URL.createObjectURL(file);
+    imageEffectsPreview.forEach((item) => {
+      item.style.backgroundImage = `url('${imageMainPreview.src}')`;
+    });
+  }
+  showImageEditor();
+}
+
 function showImageEditor() {
   imageEditorContainer.classList.remove('hidden');
   document.body.classList.add('modal-open');
@@ -68,9 +87,8 @@ function enableSubmitButton() {
   submitButton.textContent = SubmitButtonText.SENDING;
 }
 
-uploadButton.addEventListener('change', showImageEditor);
-
 function setUserFormSubmit() {
+  uploadButton.addEventListener('change', onInputChange);
   uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const isValid = validateUploadForm();
@@ -95,4 +113,4 @@ function setUserFormSubmit() {
   });
 }
 
-setUserFormSubmit();
+export { setUserFormSubmit };

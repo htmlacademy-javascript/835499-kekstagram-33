@@ -1,5 +1,5 @@
 import { renderBigPicture } from './render-picture.js';
-import { debounce, getUniqueNumbesArray } from './utils.js';
+import { debounce } from './utils.js';
 
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.firstElementChild;
@@ -26,7 +26,7 @@ const debounceRenderGallery = debounce(
 function getFilter(name) {
   switch (name) {
     case FILTERS.RANDOM:
-      return [...dataArray].filter((el, i) => getUniqueNumbesArray(DEFAULT_UNIQUE_NUMBERS, dataArray.length).includes(i));
+      return [...dataArray].sort(()=> Math.random() - 0.5).slice(0, DEFAULT_UNIQUE_NUMBERS);
     case FILTERS.DISCUSSED:
       return [...dataArray].sort((pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length);
     default:
