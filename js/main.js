@@ -1,22 +1,16 @@
-import { galleryHandler } from './render-gallery.js';
-import './upload-handler.js';
+import { setUploadForm } from './form.js';
+import { showGallery } from './gallery.js';
 import { getData } from './api.js';
-import { showErrorMessage } from './utils.js';
-import { setUserFormSubmit } from './upload-handler.js';
+import { showErrorMessage } from './popup.js';
 
-// Тестовые данные
-// import { createTestData } from './create-data.js';
-// const dataBase = createTestData();
-// galleryHandler(dataBase);
 
-setUserFormSubmit();
+setUploadForm();
 getData()
   .then((data) => {
-    galleryHandler(data);
+    showGallery(data);
   })
   .catch(
     (err) => {
       showErrorMessage(err.message);
     }
   );
-
