@@ -1,24 +1,25 @@
 import { closeUploadForm } from './form.js';
 import { isEscapeKey } from './utils.js';
+import { removePopup } from './popup.js';
 
 
 const uploadFormElement = document.querySelector('.img-upload__form');
 const formOverlayElement = uploadFormElement.querySelector('.img-upload__overlay');
 const closeButtonElement = uploadFormElement.querySelector('#upload-cancel');
 
-const onOverlayClick = (evt) => {
+const onFormOverlayClick = (evt) => {
   if (evt.target.classList.contains('img-upload__overlay')) {
     closeUploadForm();
   }
 };
 
-const onCloseButtonClick = (evt) => {
+const onFormCloseClick = (evt) => {
   if (evt.target.id === 'upload-cancel') {
     closeUploadForm();
   }
 };
 
-const onEscapeDown = (evt) => {
+const onFormEscapeDown = (evt) => {
   if ((isEscapeKey(evt)
     && !evt.target.classList.contains('text__hashtags')
     && !evt.target.classList.contains('text__description')
@@ -27,16 +28,31 @@ const onEscapeDown = (evt) => {
   }
 };
 
-const setCloseFormEvent = () => {
-  formOverlayElement.addEventListener('click', onOverlayClick);
-  closeButtonElement.addEventListener('click', onCloseButtonClick);
-  document.addEventListener('keydown', onEscapeDown);
+const setFormCloseFormEvent = () => {
+  formOverlayElement.addEventListener('click', onFormOverlayClick);
+  closeButtonElement.addEventListener('click', onFormCloseClick);
+  document.addEventListener('keydown', onFormEscapeDown);
 };
 
-const resetCloseFormEvent = () => {
-  formOverlayElement.removeEventListener('click', onOverlayClick);
-  closeButtonElement.removeEventListener('click', onCloseButtonClick);
-  document.removeEventListener('keydown', onEscapeDown);
+const removeFormCloseEvent = () => {
+  formOverlayElement.removeEventListener('click', onFormOverlayClick);
+  closeButtonElement.removeEventListener('click', onFormCloseClick);
+  document.removeEventListener('keydown', onFormEscapeDown);
 };
 
-export { setCloseFormEvent, resetCloseFormEvent };
+const onPopupEscapeDown = (evt) => {
+  if (isEscapeKey(evt)) {
+    removePopup();
+  }
+};
+
+const setPopupEscapeControl = () => {
+  document.addEventListener('keydown', onPopupEscapeDown);
+};
+
+const removePopupEscapeControl = () => {
+  document.removeEventListener('keydown', onPopupEscapeDown);
+};
+
+
+export { setFormCloseFormEvent, removeFormCloseEvent, setPopupEscapeControl, removePopupEscapeControl };

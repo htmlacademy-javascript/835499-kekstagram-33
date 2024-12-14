@@ -1,9 +1,9 @@
 
 import { ERROR_FILE_MESSAGE } from './init.js';
-import { setFilters, resetFilters } from './form-filters.js';
-import { setScaleHandler, resetScaleHandler } from './form-photo-scale.js';
-import { setValidation, resetValidation } from './form-validation.js';
-import { setCloseFormEvent, resetCloseFormEvent } from './form-control.js';
+import { setFilters, removeFilters } from './form-filters.js';
+import { setScale, removeScale } from './form-scale.js';
+import { setValidation, removeValidation } from './form-validation.js';
+import { setFormCloseFormEvent, removeFormCloseEvent, } from './form-control.js';
 import { isFileValid } from './file-validation.js';
 import { removeSubmit, setSubmit } from './form-submit.js';
 import { showErrorMessage } from './popup.js';
@@ -34,22 +34,21 @@ const closeUploadForm = () => {
   document.body.classList.remove('modal-open');
 
   uploadFormElement.reset();
-  resetScaleHandler();
-  resetFilters();
-  resetValidation();
-  resetCloseFormEvent();
+  removeScale();
+  removeFilters();
+  removeValidation();
+  removeFormCloseEvent();
   removeSubmit();
-
 };
 
 const onUploadButtonChange = () => {
   if (isFileValid()) {
     openUploadForm();
     setFilePreview();
-    setScaleHandler();
+    setScale();
     setFilters();
     setValidation();
-    setCloseFormEvent();
+    setFormCloseFormEvent();
     setSubmit();
   } else {
     showErrorMessage(ERROR_FILE_MESSAGE);

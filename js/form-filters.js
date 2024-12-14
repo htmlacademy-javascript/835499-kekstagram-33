@@ -80,10 +80,10 @@ const setFilters = () => {
   effectListElement.addEventListener('change', startFilterHandler);
 };
 
-const resetFilters = () => {
+const removeFilters = () => {
   effectItemElements[0].children[0].checked = true;
   effectListElement.removeEventListener('change', startFilterHandler);
   sliderElement.noUiSlider?.destroy();
 };
 
-export { setFilters, resetFilters };
+export { setFilters, removeFilters };

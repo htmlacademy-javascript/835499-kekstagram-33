@@ -1,5 +1,5 @@
 import { POPUP_ERROR_TIME } from './init.js';
-import { isEscapeKey } from './utils.js';
+import { setPopupEscapeControl, removePopupEscapeControl } from './form-control.js';
 
 
 const successTemplateElement = document.querySelector('#success').content.firstElementChild;
@@ -21,9 +21,15 @@ const showErrorMessage = (message) => {
   }, POPUP_ERROR_TIME);
 };
 
+let newPopup = '';
+
+const removePopup = () => {
+  newPopup.remove();
+  removePopupEscapeControl();
+};
 
 const showPopup = (type) => {
-  const newPopup = Notices[type].cloneNode(true);
+  newPopup = Notices[type].cloneNode(true);
   document.body.append(newPopup);
 
   newPopup.addEventListener('click', (evt) => {
@@ -32,12 +38,8 @@ const showPopup = (type) => {
     }
   });
 
-  document.addEventListener('keydown', (evt) => {
-    if (isEscapeKey(evt)) {
-      newPopup.remove();
-    }
-  }, {once: true});
-
+  setPopupEscapeControl();
 };
 
-export { showPopup, showErrorMessage };
+
+export { showErrorMessage, showPopup, removePopup};

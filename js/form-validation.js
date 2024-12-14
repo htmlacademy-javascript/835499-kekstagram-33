@@ -52,7 +52,7 @@ const setValidation = () => {
   descriptionFieldElement.addEventListener('input', onDescriptionInput);
 };
 
-const removeValidation = () => {
+const resetValidation = () => {
   if (pristineHashtag) {
     pristineHashtag.destroy();
   }
@@ -61,10 +61,10 @@ const removeValidation = () => {
   }
 };
 
-const resetValidation = () => {
+const removeValidation = () => {
   hashtagFieldElement.removeEventListener('input', onHashtagInput);
   descriptionFieldElement.removeEventListener('input', onDescriptionInput);
-  removeValidation();
+  resetValidation();
 };
 
-export { setValidation, resetValidation, isValid };
+export { setValidation, removeValidation, isValid };

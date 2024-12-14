@@ -36,13 +36,13 @@ const setScaleDefault = () => {
   currentScaleElement.value = `${SCALE_DEFAULT}%`;
 };
 
-const setScaleHandler = () => {
+const setScale = () => {
   setScaleDefault();
   buttonUpElement.addEventListener('click', onButtonUpClick);
   buttonDownElement.addEventListener('click', onButtonDownClick);
 };
 
-const resetScaleHandler = () => {
+const removeScale = () => {
   state.scale = SCALE_DEFAULT;
   previewImageElement.style.transform = `scale(${SCALE_DEFAULT * SCALE_RATIO})`;
   currentScaleElement.value = `${SCALE_DEFAULT}%`;
@@ -50,4 +50,4 @@ const resetScaleHandler = () => {
   buttonDownElement.removeEventListener('click', onButtonDownClick);
 };
 
-export { setScaleHandler, resetScaleHandler };
+export { setScale, removeScale };
