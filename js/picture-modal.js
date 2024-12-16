@@ -1,5 +1,5 @@
 import { COMMENTS_COUNT, AVATAR_WIDTH, AVATAR_HEIGHT } from './init.js';
-
+import { isEscapeKey } from './utils.js';
 
 const pictureContainerElement = document.querySelector('.big-picture');
 const pictureCloseButtonElement = pictureContainerElement.querySelector('#picture-cancel');
@@ -12,7 +12,7 @@ const getPicture = ({ url, description, likes}) => {
 };
 
 const createNewComment = ({avatar, name, message}) => {
-  const newComment = document.createDocumentFragment().cloneNode(true);
+  const newComment = document.createDocumentFragment();
   const li = document.createElement('li');
   const img = document.createElement('img');
   const p = document.createElement('p');
@@ -68,16 +68,21 @@ const getComment = (comments) => {
   });
 };
 
-const isEscape = (evt) => evt.key === 'Escape';
+const onPictureCloseClick = (evt) => {
+  if (evt.target.id === 'picture-cancel') {
+    closeBigPicture();
+  }
+};
 
-const onCloseBigPicture = (evt) => {
-  if (evt.target.classList.contains('big-picture') || evt.target.id === 'picture-cancel' || isEscape(evt)) {
-    evt.preventDefault();
-    pictureContainerElement.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-    pictureCloseButtonElement.removeEventListener('click', onCloseBigPicture);
-    pictureContainerElement.removeEventListener('click', onCloseBigPicture);
-    document.removeEventListener('keydown', onCloseBigPicture);
+const onContainerClick = (evt) => {
+  if (evt.target.classList.contains('big-picture')) {
+    closeBigPicture();
+  }
+};
+
+const onPictureEscape = (evt) => {
+  if (isEscapeKey(evt)) {
+    closeBigPicture();
   }
 };
 
@@ -85,10 +90,18 @@ const showBigPicture = () => {
   pictureContainerElement.classList.remove('hidden');
   pictureContainerElement.scrollTo(0,0);
   document.body.classList.add('modal-open');
-  pictureCloseButtonElement.addEventListener('click', onCloseBigPicture);
-  pictureContainerElement.addEventListener('click', onCloseBigPicture);
-  document.addEventListener('keydown', onCloseBigPicture);
+  pictureCloseButtonElement.addEventListener('click', onPictureCloseClick);
+  pictureContainerElement.addEventListener('click', onContainerClick);
+  document.addEventListener('keydown', onPictureEscape);
 };
+
+function closeBigPicture() {
+  pictureContainerElement.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  pictureCloseButtonElement.removeEventListener('click', onPictureCloseClick);
+  pictureContainerElement.removeEventListener('click', onContainerClick);
+  document.removeEventListener('keydown', onPictureEscape);
+}
 
 const renderBigPicture = (data) => {
   getPicture(data);

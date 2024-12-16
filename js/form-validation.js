@@ -1,6 +1,5 @@
 import { MAX_HASHTAGS, MAX_DESCRIPTION, HASHTAG_REGEXP, MESSAGES } from './init.js';
 
-
 let pristineHashtag = false;
 let pristineDescription = false;
 let hashtagsArray = [];
@@ -13,7 +12,6 @@ const pristineConfig = {
 const uploadFormElement = document.querySelector('.img-upload__form');
 const hashtagFieldElement = uploadFormElement.querySelector('.text__hashtags');
 const descriptionFieldElement = uploadFormElement.querySelector('.text__description');
-
 
 const initHashtagsArray = () => {
   hashtagsArray = hashtagFieldElement.value.replaceAll(/\s+/g, ' ').trim().toLowerCase().split(' ');

@@ -2,7 +2,6 @@ import { closeUploadForm } from './form.js';
 import { isEscapeKey } from './utils.js';
 import { removePopup } from './popup.js';
 
-
 const uploadFormElement = document.querySelector('.img-upload__form');
 const formOverlayElement = uploadFormElement.querySelector('.img-upload__overlay');
 const closeButtonElement = uploadFormElement.querySelector('#upload-cancel');
@@ -53,6 +52,5 @@ const setPopupEscapeControl = () => {
 const removePopupEscapeControl = () => {
   document.removeEventListener('keydown', onPopupEscapeDown);
 };
-
 
 export { setFormCloseFormEvent, removeFormCloseEvent, setPopupEscapeControl, removePopupEscapeControl };

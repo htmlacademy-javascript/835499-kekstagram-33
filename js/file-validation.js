@@ -1,6 +1,5 @@
 import { FILE_TYPES } from './init.js';
 
-
 const uploadFormElement = document.querySelector('.img-upload__form');
 const uploadFileElement = uploadFormElement.querySelector('#upload-file');
 

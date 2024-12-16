@@ -1,6 +1,5 @@
 import { SCALE_DEFAULT, SCALE_STEP, SCALE_MAX, SCALE_MIN, SCALE_RATIO } from './init.js';
 
-
 const state = {
   scale: SCALE_DEFAULT,
 };
