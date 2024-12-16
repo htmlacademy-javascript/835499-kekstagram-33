@@ -1,3 +1,17 @@
+export const BASE_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
+export const ROUTE = {
+  GET_DATA: '/data',
+  SEND_DATA: '/',
+};
+export const METHOD = {
+  GET: 'GET',
+  POST: 'POST',
+};
+export const ERROR_TEXT = {
+  GET_DATA: 'Не удалось загрузить данные. Попробуйте обновить страницу',
+  SEND_DATA: 'Не удалось отправить форму. Попробуйте ещё раз',
+};
+
 export const DEFAULT_UNIQUE_NUMBERS = 10;
 export const DEBOUNCE_TIME = 500;
 export const FILTERS = {

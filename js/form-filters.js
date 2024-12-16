@@ -1,6 +1,5 @@
 import { EFFECT_DEFAULT, EFFECTS } from './init.js';
 
-
 const sliderContainerElement = document.querySelector('.img-upload__effect-level');
 const sliderElement = sliderContainerElement.querySelector('.effect-level__slider');
 const sliderInputElement = sliderContainerElement.querySelector('.effect-level__value');

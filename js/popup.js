@@ -1,7 +1,6 @@
 import { POPUP_ERROR_TIME } from './init.js';
 import { setPopupEscapeControl, removePopupEscapeControl } from './form-control.js';
 
-
 const successTemplateElement = document.querySelector('#success').content.firstElementChild;
 const errorTemplateElement = document.querySelector('#error').content.firstElementChild;
 const alertTemplate = document.querySelector('#data-error').content.firstElementChild;
@@ -40,6 +39,5 @@ const showPopup = (type) => {
 
   setPopupEscapeControl();
 };
-
 
 export { showErrorMessage, showPopup, removePopup};

@@ -1,4 +1,3 @@
-
 import { ERROR_FILE_MESSAGE } from './init.js';
 import { setFilters, removeFilters } from './form-filters.js';
 import { setScale, removeScale } from './form-scale.js';
@@ -7,7 +6,6 @@ import { setFormCloseFormEvent, removeFormCloseEvent, } from './form-control.js'
 import { isFileValid } from './file-validation.js';
 import { removeSubmit, setSubmit } from './form-submit.js';
 import { showErrorMessage } from './popup.js';
-
 
 const uploadFormElement = document.querySelector('.img-upload__form');
 const uploadFileElement = uploadFormElement.querySelector('#upload-file');
@@ -56,7 +54,7 @@ const onUploadButtonChange = () => {
 };
 
 const setUploadForm = () => {
-  uploadFileElement.addEventListener('change', onUploadButtonChange);
+  uploadFileElement.addEventListener('change', onUploadButtonChange); // onUploadInpurChange
 };
 
 export { setUploadForm, closeUploadForm };

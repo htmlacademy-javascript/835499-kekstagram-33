@@ -4,7 +4,6 @@ import { closeUploadForm } from './form.js';
 import { showPopup, showErrorMessage } from './popup.js';
 import { isValid } from './form-validation.js';
 
-
 const uploadFormElement = document.querySelector('.img-upload__form');
 const submitButtonElement = uploadFormElement.querySelector('.img-upload__submit');
 

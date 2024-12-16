@@ -2,7 +2,6 @@ import { DEFAULT_UNIQUE_NUMBERS, DEBOUNCE_TIME, FILTERS } from './init.js';
 import { renderBigPicture } from './picture-modal.js';
 import { debounce } from './utils.js';
 
-
 let dataArray = [];
 let currentFilter = FILTERS.DEFAULT;
 
